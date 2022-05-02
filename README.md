@@ -36,20 +36,8 @@ npm install
 
 After installing npm packages, the application will be invoked by using the following command:
 
-- In server directory:
-
 ```
-npm i
-npm run seed
-npm i apollo-server-express graphql
-npm run watch
 npm run develop
-```
-
-- At the root of the application
-
-```
-npm init -y
 ```
 
 #### Example Screenshot
