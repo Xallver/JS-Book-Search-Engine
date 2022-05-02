@@ -13,7 +13,7 @@ import { GET_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import { removeBookId, saveBookIds } from "../utils/localStorage";
+import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
   // use the useQuery() Hook to execute the GET_ME query
@@ -32,6 +32,7 @@ const SavedBooks = () => {
       return false;
     }
 
+    // use removeBook function
     try {
       const response = await removeBook({
         variables: { bookId: bookId },
@@ -53,10 +54,6 @@ const SavedBooks = () => {
     return <h2>LOADING...</h2>;
   }
 
-  // get info from localStorage by the use data queries
-  const savedBookIds = userData.savedBooks.map((book) => book.bookId);
-  saveBookIds(savedBookIds);
-
   return (
     <>
       <Jumbotron fluid className="text-light bg-dark">
@@ -67,10 +64,9 @@ const SavedBooks = () => {
       <Container>
         <h2>
           {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-              userData.savedBooks.length === 1 ? "book" : "books"
+            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? "book" : "books"
             }:`
-          : "You have no saved books!"}
+            : "You have no saved books!"}
         </h2>
         <CardColumns>
           {userData.savedBooks.map((book) => {
